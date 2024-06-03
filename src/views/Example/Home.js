@@ -1,6 +1,8 @@
-import React from "react";
-import { withRouter } from "react-router";
-import Color from "../HOC/Color";
+import React from 'react'
+import { withRouter } from 'react-router'
+import Color from '../HOC/Color'
+import logo from '../../assets/images/download.jpg'
+import { connect } from 'react-redux'
 
 class Home extends React.Component {
     componentDidMount() {
@@ -9,17 +11,31 @@ class Home extends React.Component {
         // }, 3000)
     }
 
-    render () {
-        console.log('>>> Check props: ', this.props)
+    //prettier-ignore
+    render() {
+        {console.log('>>> Check props redux: ', this.props.dataRedux)}
         return (
-            <div>
-                Hello World from Homepage
-            </div>
-        )
+            <>
+                <div>
+                    Hello World from Homepage
+                </div>
+                <div>
+                    <img src={logo} style={{marginTop: '20px'}}/>
+                </div>
+            </>
+        )  
     }
 }
 
-// HOC: higher order component
+// Cách kết nối vơi redux, đến dòng cuối
+// state của redux
+const mapStateToProps = (state) => {
+    return {
+        dataRedux: state.users
+    }
+}
+
+// HOC: higher order component: Color(Home)
 // Home sẽ có props của withRouter
 // export default withRouter(Home);
-export default Color(Home);
+export default connect(mapStateToProps)(Color(Home))
