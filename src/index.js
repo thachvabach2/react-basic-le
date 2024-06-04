@@ -9,7 +9,10 @@ import App from './views/App'
 import reportWebVitals from './reportWebVitals'
 import './styles/global.scss'
 
-const reduxStore = createStore(rootReducer)
+const reduxStore = createStore(
+    rootReducer,
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+)
 
 ReactDOM.render(
     <React.StrictMode>
